@@ -1,0 +1,12 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="148dp"
+        android:cropToPadding="true"
+        android:paddingHorizontal="25dp"
+        android:src="@mipmap/slc_logo" />
+</LinearLayout>
