@@ -1,6 +1,7 @@
 package guts.carpaltunnel.mobileapp;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -34,21 +35,26 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
 
         Button button = findViewById(R.id.location);
         button.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NewApi")
             public void onClick(View v) {
-                    if(Build.VERSION.SDK_INT < 23 || checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    System.out.println("bar");
+                    if((Build.VERSION.SDK_INT < 23) || checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                        Location location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
                         TextView t = findViewById(R.id.locationtext);
+                        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, thisClass);
+                        Location location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
-                        while(location == null)
-                            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, thisClass);
-
-                        Geocoder geocoder = new Geocoder(thisCtx, Locale.getDefault());
-                        try {
-                            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                            t.setText("Your address is\n\n" + addresses.get(0).getAddressLine(0));
+                        if(location != null) {
+                            Geocoder geocoder = new Geocoder(thisCtx, Locale.getDefault());
+                            try {
+                                List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                                t.setText("Your address is\n\n" + addresses.get(0).getAddressLine(0));
+                            } catch (IOException e) {
+                            }
                         }
-                        catch(IOException e){
+                        else{
+                            t.setText("Fuck you");
                         }
                 }
             }
