@@ -3,7 +3,9 @@ package guts.carpaltunnel.mobileapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.InputFilter;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,6 +48,50 @@ public class BankActivity extends AppCompatActivity {
         sortField1.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxSortLength)});
         sortField2.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxSortLength)});
         sortField3.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxSortLength)});
+
+        sortField1.addTextChangedListener(new TextWatcher() {
+
+            public void onTextChanged(CharSequence s, int start,int before, int count)
+            {
+                // TODO Auto-generated method stub
+                if(sortField1.getText().toString().length()==2)     //size as per your requirement
+                {
+                    sortField2.requestFocus();
+                }
+            }
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+            }
+
+        });
+
+        sortField2.addTextChangedListener(new TextWatcher() {
+
+            public void onTextChanged(CharSequence s, int start,int before, int count)
+            {
+                // TODO Auto-generated method stub
+                if(sortField2.getText().toString().length()==2)     //size as per your requirement
+                {
+                    sortField3.requestFocus();
+                }
+            }
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+            }
+
+        });
 
         /* groupRadio Handler */
 
