@@ -4,45 +4,23 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-
-    <TextView
-        android:id="@+id/textViewNationality"
-        android:layout_width="match_parent"
-        android:layout_height="57dp"
-        android:text="Nationality"
-        android:textAlignment="center"
-        android:textSize="30sp" />
-
     <AutoCompleteTextView
+        android:hint="Nationality"
         android:id="@+id/nationalities"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></AutoCompleteTextView>
-
-    <TextView
-        android:id="@+id/textViewUniversity"
-        android:layout_width="match_parent"
-        android:layout_height="57dp"
-        android:text="University"
-        android:textAlignment="center"
-        android:textSize="30sp" />
+        android:layout_height="wrap_content" />
 
     <AutoCompleteTextView
         android:id="@+id/universities"
+        android:hint="University"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"></AutoCompleteTextView>
-
-    <TextView
-        android:id="@+id/textViewCourse"
-        android:layout_width="match_parent"
-        android:layout_height="57dp"
-        android:text="Course"
-        android:textAlignment="center"
-        android:textSize="30sp" />
+        android:layout_height="wrap_content" />
 
     <AutoCompleteTextView
         android:id="@+id/courses"
+        android:hint="Course"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"></AutoCompleteTextView>
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/submit_uni"
