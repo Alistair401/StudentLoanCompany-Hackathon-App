@@ -55,6 +55,28 @@ public class BankActivity extends AppCompatActivity {
         sortField2.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxSortLength)});
         sortField3.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxSortLength)});
 
+        accField.addTextChangedListener(new TextWatcher() {
+
+            public void onTextChanged(CharSequence s, int start,int before, int count)
+            {
+                // TODO Auto-generated method stub
+                if(accField.getText().toString().length()==8)     //size as per your requirement
+                {
+                    sortField1.requestFocus();
+                }
+            }
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+            }
+
+        });
+
         sortField1.addTextChangedListener(new TextWatcher() {
 
             public void onTextChanged(CharSequence s, int start,int before, int count)
