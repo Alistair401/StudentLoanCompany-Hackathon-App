@@ -53,6 +53,7 @@ public class HelpActivity extends AppCompatActivity {
             });*/
             return rootView;
         }
+
     }
 
 }
