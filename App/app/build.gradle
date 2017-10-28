@@ -19,6 +19,10 @@ android {
 }
 
 dependencies {
+    implementation 'com.android.support:design:26.1.0'
+    compile 'com.facebook.android:facebook-core:4.27.0'
+    compile 'com.facebook.android:facebook-login:4.27.0'
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
