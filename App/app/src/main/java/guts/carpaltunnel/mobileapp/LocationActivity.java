@@ -21,13 +21,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import com.facebook.CallbackManager;
 
 import java.io.IOException;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -35,18 +33,25 @@ import guts.carpaltunnel.mobileapp.util.FormManager;
 
 public class LocationActivity extends AppCompatActivity implements LocationListener {
 
+    private static final int TERM_ADDRESS = 1;
+    private static final int PERM_ADDRESS = 0;
+
     Activity ctx = this;
 
     CallbackManager callbackManager;
     LocationManager mLocationManager;
 
     RadioGroup groupRadio;
+
     EditText termAddress;
     EditText termCity;
     EditText termCountry;
     EditText termPostcode;
 
-    TextView addr0, addr1, addr2, addr3;
+    EditText permAddress;
+    EditText permCity;
+    EditText permCountry;
+    EditText permPostcode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,29 +69,18 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
         termCountry = findViewById(R.id.t_address_country);
         termPostcode = findViewById(R.id.t_address_postcode);
 
-        termAddress.setVisibility(View.GONE);
-        termCity.setVisibility(View.GONE);
-        termCountry.setVisibility(View.GONE);
-        termPostcode.setVisibility(View.GONE);
+        permAddress = findViewById(R.id.p_address);
+        permCity = findViewById(R.id.p_address_city);
+        permCountry = findViewById(R.id.p_address_country);
+        permPostcode = findViewById(R.id.p_address_postcode);
+
+        setTermAddressVisibility(false);
 
         groupRadio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-                if (checkedId == R.id.noBtn) {
-                    termAddress.setVisibility(View.VISIBLE);
-                    termCity.setVisibility(View.VISIBLE);
-                    termCountry.setVisibility(View.VISIBLE);
-                    termPostcode.setVisibility(View.VISIBLE);
-                }
-                else
-                {
-                    termAddress.setVisibility(View.GONE);
-                    termCity.setVisibility(View.GONE);
-                    termCountry.setVisibility(View.GONE);
-                    termPostcode.setVisibility(View.GONE);
-                }
+                setTermAddressVisibility(checkedId == R.id.noBtn);
             }
         });
 
@@ -94,7 +88,7 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
         button.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NewApi")
             public void onClick(View v) {
-                CharSequence colors[] = new CharSequence[] {"Permanent", "Term"};
+                CharSequence colors[] = new CharSequence[]{"Permanent", "Term"};
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
                 builder.setTitle("Pick a color");
@@ -102,44 +96,30 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // the user clicked on colors[which]
-                        if((Build.VERSION.SDK_INT < 23) || checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) ==
+                        if ((Build.VERSION.SDK_INT < 23) || checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) ==
                                 PackageManager.PERMISSION_GRANTED) {
                             mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, thisClass);
+                            if (mLocationManager != null) {
+                                mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, thisClass);
+                            } else {
+                                // TODO: gps is broke?
+                                return;
+                            }
                             Location location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
-                            TextView[] address = {findViewById(R.id.t_address),
-                                    findViewById(R.id.t_address_city),
-                                    findViewById(R.id.t_address_country),
-                                    findViewById(R.id.t_address_postcode)};
-
-                            if (which == 0) {
-                                address[0] = findViewById(R.id.p_address);
-                                address[1] = findViewById(R.id.p_address_city);
-                                address[2] = findViewById(R.id.p_address_country);
-                                address[3] = findViewById(R.id.p_address_postcode);
-                            } else if (which == 1) {
-                                address[0] = findViewById(R.id.t_address);
-                                address[1] = findViewById(R.id.t_address_city);
-                                address[2] = findViewById(R.id.t_address_country);
-                                address[3] = findViewById(R.id.t_address_postcode);
+                            if (location == null) {
+                                // TODO: maybe show the user a toast
+                                return;
                             }
-
-                            if(location == null) {
-                                address[0].setText("Location error :(");
-                                return; }
 
                             Geocoder geocoder = new Geocoder(thisCtx, Locale.getDefault());
                             try {
                                 List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),
                                         location.getLongitude(), 1);
-                                address[0].setText(addresses.get(0).getAddressLine(0).split(",")[0]);
-                                address[1].setText(addresses.get(0).getLocality());
-                                address[2].setText(addresses.get(0).getCountryName());
-                                address[3].setText(addresses.get(0).getPostalCode());
-                                System.out.println(addresses.get(0));
+
+                                fillAddress(which, addresses.get(0));
                             } catch (IOException e) {
-                                address[0].setText("GPS Error :(");
+                                // TODO: toast again
                             }
                         }
                     }
@@ -153,7 +133,8 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), FirstContactActivity.class);
                 FormManager formManager = ((HSApplication) getApplicationContext()).formManager;
-                formManager.setField("perm_address", addr0.getText() + ", " + addr1.getText() + ", " + addr2.getText() + ", " + addr3.getText());
+                formManager.setField("perm_address", permAddress.getText() + ", " + permCity.getText() + ", " + permCountry.getText() + ", " + permPostcode.getText());
+                formManager.setField("term_address", termAddress.getText() + ", " + termCity.getText() + ", " + termCountry.getText() + ", " + termPostcode.getText());
                 startActivityForResult(myIntent, 0);
             }
         });
@@ -174,6 +155,37 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
     }
 
     public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
+    }
+
+    private void setTermAddressVisibility(boolean visible) {
+        if (visible) {
+            termAddress.setVisibility(View.VISIBLE);
+            termCity.setVisibility(View.VISIBLE);
+            termCountry.setVisibility(View.VISIBLE);
+            termPostcode.setVisibility(View.VISIBLE);
+        } else {
+            termAddress.setVisibility(View.GONE);
+            termCity.setVisibility(View.GONE);
+            termCountry.setVisibility(View.GONE);
+            termPostcode.setVisibility(View.GONE);
+        }
+    }
+
+    private void fillAddress(int addressType, Address address) {
+        switch (addressType) {
+            case TERM_ADDRESS:
+                termAddress.setText(address.getAddressLine(0).split(",")[0]);
+                termCity.setText(address.getLocality());
+                termCountry.setText(address.getCountryName());
+                termPostcode.setText(address.getPostalCode());
+                break;
+            case PERM_ADDRESS:
+                permAddress.setText(address.getAddressLine(0).split(",")[0]);
+                permCity.setText(address.getLocality());
+                permCountry.setText(address.getCountryName());
+                permPostcode.setText(address.getPostalCode());
+                break;
+        }
     }
 }
 

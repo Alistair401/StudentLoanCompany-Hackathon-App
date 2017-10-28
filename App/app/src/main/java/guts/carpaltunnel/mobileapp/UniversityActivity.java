@@ -3,6 +3,7 @@ package guts.carpaltunnel.mobileapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -86,7 +87,7 @@ public class UniversityActivity extends AppCompatActivity {
         acTextViewNationalities.setAdapter(adapter_nationalities);
 
         //get the spinner from the xml.
-        Spinner dropdown = (Spinner)findViewById(R.id.spinner1);
+        final Spinner dropdown = (Spinner)findViewById(R.id.spinner1);
         //create a list of items for the spinner.
         String [] yearOfStudy = {"1st", "2nd", "3rd", "4th", "5th"};
         //create an adapter to describe how the items are displayed, adapters are used in several places in android.
@@ -104,6 +105,7 @@ public class UniversityActivity extends AppCompatActivity {
                 formManager.setField("university", acTextViewUniversities.getText().toString());
                 formManager.setField("nationality", acTextViewNationalities.getText().toString());
                 formManager.setField("course", acTextViewCourses.getText().toString());
+                formManager.setField("degree_year",dropdown.getSelectedItem().toString());
                 startActivityForResult(myIntent, 0);
             }
         });
