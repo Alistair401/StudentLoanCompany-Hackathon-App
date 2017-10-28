@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".HelpActivity">
+       
 
         <activity android:name=".WelcomeActivity">
 
@@ -50,8 +50,8 @@
         <activity android:name=".SignatureActivity"></activity>
 
         
-          <activity android:name=".HelpActivity">
-             <activity android:name=".LocationActivity"></activity>
+          <activity android:name=".HelpActivity"></activity>
+
 
         <activity android:name=".FirstContactActivity"></activity>
 
