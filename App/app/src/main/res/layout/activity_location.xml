@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
-                    android:id="@+id/permanent_address"
+                    android:id="@+id/p_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Permanent Address"
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
-                    android:id="@+id/address_city"
+                    android:id="@+id/p_address_city"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="City"
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
-                    android:id="@+id/address_country"
+                    android:id="@+id/p_address_country"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Country"
@@ -69,7 +69,100 @@
                 android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
-                    android:id="@+id/address_postcode"
+                    android:id="@+id/p_address_postcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Postcode"
+                    android:inputType="textPostalAddress"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Is your permanent address the same as your term address?" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <RadioGroup
+                android:id="@+id/groupRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minHeight="30dp"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/yesBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="Yes" />
+
+                <RadioButton
+                    android:id="@+id/noBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="No"/>
+            </RadioGroup>
+
+            // END OF PERM ADDR
+
+            // START OF TERM ADDR
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/t_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Term Address"
+                    android:inputType="textPostalAddress"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/t_address_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="City"
+                    android:inputType="textPostalAddress"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/t_address_country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Country"
+                    android:inputType="textPostalAddress"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/t_address_postcode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Postcode"
@@ -78,7 +171,6 @@
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
-
 
             <Button
                 android:id="@+id/location_button"
