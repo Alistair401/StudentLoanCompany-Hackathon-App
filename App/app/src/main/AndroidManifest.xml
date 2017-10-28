@@ -21,8 +21,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-     
-
        <activity android:name=".WelcomeActivity">
 
             <intent-filter>
@@ -54,6 +52,7 @@
         <activity android:name=".HelpActivity"></activity>
         <activity android:name=".FirstContactActivity"></activity>
         <activity android:name=".UniversityActivity"></activity>
+        <activity android:name=".BankActivity">
 
     </application>
 

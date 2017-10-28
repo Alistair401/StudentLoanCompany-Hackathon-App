@@ -1,12 +1,95 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp" >
 
-    
     <Button
-        android:id="@+id/form_button"
+        android:id="@+id/loanBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="185dp"
         android:text="Fill out a loan application" />
-</LinearLayout>
+
+    <TextView
+        android:id="@+id/accText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/accField"
+        android:layout_alignBottom="@+id/accField"
+        android:layout_alignParentStart="true"
+        android:text="Account Number" />
+
+    <EditText
+        android:id="@+id/accField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/sortText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/accField"
+        android:layout_marginTop="47dp"
+        android:text="Sort Code" />
+
+    <EditText
+        android:id="@+id/sortField3"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/sortField2"
+        android:layout_alignBottom="@+id/sortField2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="17dp"
+        android:ems="10"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/sortField2"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/sortField1"
+        android:layout_alignBottom="@+id/sortField1"
+        android:layout_marginEnd="38dp"
+        android:layout_toStartOf="@+id/sortField3"
+        android:ems="10"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/sortField1"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/sortText"
+        android:layout_alignBottom="@+id/sortText"
+        android:layout_alignStart="@+id/accField"
+        android:ems="10"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/sortField2"
+        android:layout_toEndOf="@+id/sortField2"
+        android:layout_marginStart="-24dp"
+        android:text="-"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/sortField2"
+        android:layout_marginStart="18dp"
+        android:layout_toEndOf="@+id/sortField1"
+        android:text="-"
+        android:textSize="30sp" />
+
+</RelativeLayout>
