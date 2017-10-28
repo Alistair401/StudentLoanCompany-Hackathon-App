@@ -53,6 +53,8 @@
         <activity android:name=".FirstContactActivity"></activity>
         <activity android:name=".UniversityActivity"></activity>
         <activity android:name=".BankActivity"></activity>
+        <activity android:name=".PhotoIdActivity"></activity>
+
 
     </application>
 
