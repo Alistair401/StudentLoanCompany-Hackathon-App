@@ -91,7 +91,7 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
                 CharSequence colors[] = new CharSequence[]{"Permanent", "Term"};
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
-                builder.setTitle("Pick a color");
+                builder.setTitle("Which address?");
                 builder.setItems(colors, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
