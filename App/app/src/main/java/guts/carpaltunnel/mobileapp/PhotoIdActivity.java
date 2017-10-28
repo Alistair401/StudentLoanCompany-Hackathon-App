@@ -6,15 +6,28 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.SparseArray;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.google.android.gms.vision.Frame;
+import com.google.android.gms.vision.text.TextBlock;
+import com.google.android.gms.vision.text.TextRecognizer;
+
+import java.io.BufferedWriter;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Created by Kyle on 28/10/2017.
  */
 
-public class PhotoIdActivity extends AppCompatActivity {
+public class PhotoIdActivity extends AppCompatActivity  {
 
     private static final int CAMERA_REQUEST = 1888;
     private ImageView imageView;
@@ -45,10 +58,26 @@ public class PhotoIdActivity extends AppCompatActivity {
         });
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             imageView.setImageBitmap(photo);
+
+            TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
+            Frame imageFrame = new Frame.Builder()
+
+                    .setBitmap(photo)                 // your image bitmap
+                    .build();
+
+            String imageText = "";
+            SparseArray<TextBlock> textBlocks = textRecognizer.detect(imageFrame);
+            for (int i = 0; i < textBlocks.size(); i++) {
+                TextBlock textBlock = textBlocks.get(textBlocks.keyAt(i));
+                imageText = imageText + textBlock.getValue();                   // return string
+                System.out.println(textBlock.getValue());
+            }
+            TextView textView = this.findViewById(R.id.textView);
+            textView.setText(imageText);
         }
     }
 }
