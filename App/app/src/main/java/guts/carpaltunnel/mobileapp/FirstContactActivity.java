@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import guts.carpaltunnel.mobileapp.util.FormManager;
+
 public class FirstContactActivity extends AppCompatActivity {
 
     public static final int CONTACT_REQUEST = 1;
@@ -41,6 +43,9 @@ public class FirstContactActivity extends AppCompatActivity {
         submit_form.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), UniversityActivity.class);
+                FormManager formManager = ((HSApplication) getApplicationContext()).formManager;
+                formManager.setField("contact_name", contact_name.getText());
+                formManager.setField("contact_mobile", contact_mobile.getText());
                 startActivityForResult(myIntent, 0);
             }
         });

@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 
+import guts.carpaltunnel.mobileapp.util.FormManager;
+
 /**
  * Created by tom21 on 28/10/17.
  */
@@ -51,9 +53,9 @@ public class UniversityActivity extends AppCompatActivity {
 
         //// universities adapter
         //Create Array Adapter
-        ArrayAdapter<String> adapter_universities = new ArrayAdapter<String>(this,android.R.layout.select_dialog_singlechoice, universities);
+        final ArrayAdapter<String> adapter_universities = new ArrayAdapter<String>(this,android.R.layout.select_dialog_singlechoice, universities);
         //Find TextView control
-        AutoCompleteTextView acTextViewUniversities = (AutoCompleteTextView) findViewById(R.id.universities);
+        final AutoCompleteTextView acTextViewUniversities = (AutoCompleteTextView) findViewById(R.id.universities);
         //Set the number of characters the user must type before the drop down list is shown
         acTextViewUniversities.setThreshold(1);
         //Set the adapter
@@ -61,9 +63,9 @@ public class UniversityActivity extends AppCompatActivity {
 
         //// courses adapter
         //Create Array Adapter
-        ArrayAdapter<String> adapter_courses = new ArrayAdapter<String>(this,android.R.layout.select_dialog_singlechoice, courses);
+        final ArrayAdapter<String> adapter_courses = new ArrayAdapter<String>(this,android.R.layout.select_dialog_singlechoice, courses);
         //Find TextView control
-        AutoCompleteTextView acTextViewCourses = (AutoCompleteTextView) findViewById(R.id.courses);
+        final AutoCompleteTextView acTextViewCourses = (AutoCompleteTextView) findViewById(R.id.courses);
         //Set the number of characters the user must type before the drop down list is shown
         acTextViewCourses.setThreshold(1);
         //Set the adapter
@@ -71,9 +73,9 @@ public class UniversityActivity extends AppCompatActivity {
 
         //// nationalities adapter
         //Create Array Adapter
-        ArrayAdapter<String> adapter_nationalities = new ArrayAdapter<String>(this,android.R.layout.select_dialog_singlechoice, nationalities);
+        final ArrayAdapter<String> adapter_nationalities = new ArrayAdapter<String>(this,android.R.layout.select_dialog_singlechoice, nationalities);
         //Find TextView control
-        AutoCompleteTextView acTextViewNationalities = (AutoCompleteTextView) findViewById(R.id.nationalities);
+        final AutoCompleteTextView acTextViewNationalities = (AutoCompleteTextView) findViewById(R.id.nationalities);
         //Set the number of characters the user must type before the drop down list is shown
         acTextViewNationalities.setThreshold(1);
         //Set the adapter
@@ -84,6 +86,10 @@ public class UniversityActivity extends AppCompatActivity {
         submit_uni.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), BankActivity.class);
+                FormManager formManager = ((HSApplication)getApplicationContext()).formManager;
+                formManager.setField("university",adapter_universities.getItem(acTextViewUniversities.getListSelection()));
+                formManager.setField("nationality",adapter_nationalities.getItem(acTextViewNationalities.getListSelection()));
+                formManager.setField("course",adapter_courses.getItem(acTextViewCourses.getListSelection()));
                 startActivityForResult(myIntent, 0);
             }
         });
