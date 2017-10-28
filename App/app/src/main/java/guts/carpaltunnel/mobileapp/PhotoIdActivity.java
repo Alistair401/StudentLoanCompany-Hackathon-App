@@ -64,6 +64,9 @@ public class PhotoIdActivity extends AppCompatActivity  {
 
             imageView.setImageBitmap(photo);
 
+            if(photo.getConfig() == null)
+                return;
+            
             TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
             Frame imageFrame = new Frame.Builder()
 
