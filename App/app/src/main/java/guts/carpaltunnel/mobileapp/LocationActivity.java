@@ -42,7 +42,7 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
         button.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NewApi")
             public void onClick(View v) {
-                if((Build.VERSION.SDK_INT > 23) || checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) ==
+                if((Build.VERSION.SDK_INT < 23) || checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) ==
                         PackageManager.PERMISSION_GRANTED) {
                     mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                     mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, thisClass);
