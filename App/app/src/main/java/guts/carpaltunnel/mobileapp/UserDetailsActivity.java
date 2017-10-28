@@ -1,6 +1,7 @@
 package guts.carpaltunnel.mobileapp;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -21,7 +22,7 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 
-public class UserDetailsActivity extends AppCompatActivity {
+public class UserDetailsActivity extends AppCompatActivity{
 
     CallbackManager callbackManager;
 
@@ -72,7 +73,7 @@ public class UserDetailsActivity extends AppCompatActivity {
 
         submit_form.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), FirstContactActivity.class);
+                Intent myIntent = new Intent(view.getContext(), LocationActivity.class);
                 startActivityForResult(myIntent, 0);
             }
         });
@@ -113,7 +114,5 @@ public class UserDetailsActivity extends AppCompatActivity {
         request.setParameters(parameters);
         request.executeAsync();
     }
-
-
 }
 

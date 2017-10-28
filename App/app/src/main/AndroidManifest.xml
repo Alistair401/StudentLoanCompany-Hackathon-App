@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="guts.carpaltunnel.mobileapp">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -45,9 +46,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="guts.carpaltunnel.mobileapp.WelcomeActivity" />
         </activity>
-        <activity android:name=".SignatureActivity" />
+        <activity android:name=".LocationActivity"></activity>
+        <activity android:name=".SignatureActivity"></activity>
+
+        
           <activity android:name=".HelpActivity">
+             <activity android:name=".LocationActivity"></activity>
+
         <activity android:name=".FirstContactActivity"></activity>
+
     </application>
 
 </manifest>
