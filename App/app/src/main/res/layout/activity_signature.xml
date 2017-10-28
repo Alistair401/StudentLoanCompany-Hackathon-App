@@ -11,17 +11,25 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"></LinearLayout>
 
-    <Button
-        android:id="@+id/clear"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Clear" />
-    <Button
-        android:id="@+id/get_sign"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Submit"/>
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="41dp"
+        tools:layout_editor_absoluteY="0dp">
 
+        <Button
+            android:id="@+id/clear"
+            android:layout_width="143dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="116dp"
+            android:text="Clear" />
 
+        <Button
+            android:id="@+id/get_sign"
+            android:layout_width="129dp"
+            android:layout_height="51dp"
+            android:text="Submit" />
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
