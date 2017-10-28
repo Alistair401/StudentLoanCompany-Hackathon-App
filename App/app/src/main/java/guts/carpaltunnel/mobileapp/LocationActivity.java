@@ -2,7 +2,9 @@ package guts.carpaltunnel.mobileapp;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -12,16 +14,20 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.facebook.CallbackManager;
 
 import java.io.IOException;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -29,10 +35,16 @@ import guts.carpaltunnel.mobileapp.util.FormManager;
 
 public class LocationActivity extends AppCompatActivity implements LocationListener {
 
+    Activity ctx = this;
+
     CallbackManager callbackManager;
     LocationManager mLocationManager;
 
-    TextView addr0, addr1, addr2, addr3;
+    RadioGroup groupRadio;
+    EditText termAddress;
+    EditText termCity;
+    EditText termCountry;
+    EditText termPostcode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,38 +55,94 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
         final LocationListener thisClass = this;
         final Context thisCtx = this;
 
+        groupRadio = findViewById(R.id.groupRadio);
+
+        termAddress = findViewById(R.id.t_address);
+        termCity = findViewById(R.id.t_address_city);
+        termCountry = findViewById(R.id.t_address_country);
+        termPostcode = findViewById(R.id.t_address_postcode);
+
+        termAddress.setVisibility(View.GONE);
+        termCity.setVisibility(View.GONE);
+        termCountry.setVisibility(View.GONE);
+        termPostcode.setVisibility(View.GONE);
+
+        groupRadio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                if (checkedId == R.id.noBtn) {
+                    termAddress.setVisibility(View.VISIBLE);
+                    termCity.setVisibility(View.VISIBLE);
+                    termCountry.setVisibility(View.VISIBLE);
+                    termPostcode.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    termAddress.setVisibility(View.GONE);
+                    termCity.setVisibility(View.GONE);
+                    termCountry.setVisibility(View.GONE);
+                    termPostcode.setVisibility(View.GONE);
+                }
+            }
+        });
+
         Button button = findViewById(R.id.location_button);
         button.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NewApi")
             public void onClick(View v) {
-                if ((Build.VERSION.SDK_INT < 23) || checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) ==
-                        PackageManager.PERMISSION_GRANTED) {
-                    mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                    mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, thisClass);
-                    Location location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                CharSequence colors[] = new CharSequence[] {"Permanent", "Term"};
 
-                    addr0 = findViewById(R.id.permanent_address);
-                    addr1 = findViewById(R.id.address_city);
-                    addr2 = findViewById(R.id.address_country);
-                    addr3 = findViewById(R.id.address_postcode);
+                AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+                builder.setTitle("Pick a color");
+                builder.setItems(colors, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // the user clicked on colors[which]
+                        if((Build.VERSION.SDK_INT < 23) || checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) ==
+                                PackageManager.PERMISSION_GRANTED) {
+                            mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, thisClass);
+                            Location location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
-                    if (location == null) {
-                        addr0.setText("Location error :(");
-                        return;
+                            TextView[] address = {findViewById(R.id.t_address),
+                                    findViewById(R.id.t_address_city),
+                                    findViewById(R.id.t_address_country),
+                                    findViewById(R.id.t_address_postcode)};
+
+                            if (which == 0) {
+                                address[0] = findViewById(R.id.p_address);
+                                address[1] = findViewById(R.id.p_address_city);
+                                address[2] = findViewById(R.id.p_address_country);
+                                address[3] = findViewById(R.id.p_address_postcode);
+                            } else if (which == 1) {
+                                address[0] = findViewById(R.id.t_address);
+                                address[1] = findViewById(R.id.t_address_city);
+                                address[2] = findViewById(R.id.t_address_country);
+                                address[3] = findViewById(R.id.t_address_postcode);
+                            }
+
+                            if(location == null) {
+                                address[0].setText("Location error :(");
+                                return; }
+
+                            Geocoder geocoder = new Geocoder(thisCtx, Locale.getDefault());
+                            try {
+                                List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),
+                                        location.getLongitude(), 1);
+                                address[0].setText(addresses.get(0).getAddressLine(0).split(",")[0]);
+                                address[1].setText(addresses.get(0).getLocality());
+                                address[2].setText(addresses.get(0).getCountryName());
+                                address[3].setText(addresses.get(0).getPostalCode());
+                                System.out.println(addresses.get(0));
+                            } catch (IOException e) {
+                                address[0].setText("GPS Error :(");
+                            }
+                        }
                     }
-
-                    Geocoder geocoder = new Geocoder(thisCtx, Locale.getDefault());
-                    try {
-                        List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),
-                                location.getLongitude(), 1);
-                        addr0.setText(addresses.get(0).getAddressLine(0).split(",")[0]);
-                        addr1.setText(addresses.get(0).getLocality());
-                        addr2.setText(addresses.get(0).getCountryName());
-                        addr3.setText(addresses.get(0).getPostalCode());
-                    } catch (IOException e) {
-                        addr0.setText("GPS Error :(");
-                    }
-                }
+                });
+                builder.show();
             }
         });
 
