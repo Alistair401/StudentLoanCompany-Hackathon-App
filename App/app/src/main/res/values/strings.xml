@@ -1,5 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SLC App</string>
+    <string name="hello">Hello World, CaptureSignatureActivity!</string>
+    <string name="app_name">SLC</string>
+    <string name="external_dir">GetSignature</string>
     <string name="facebook_app_id">1488210884603211</string>
     <string name="fb_login_protocol_scheme">fb1488210884603211</string>
 </resources>
