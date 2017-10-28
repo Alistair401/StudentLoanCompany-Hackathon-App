@@ -46,6 +46,8 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
     EditText termCountry;
     EditText termPostcode;
 
+    TextView addr0, addr1, addr2, addr3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
