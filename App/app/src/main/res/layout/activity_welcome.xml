@@ -7,13 +7,13 @@
         android:layout_width="match_parent"
         android:layout_height="148dp"
         android:cropToPadding="true"
-        android:paddingHorizontal="25dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:src="@mipmap/slc_logo" />
 
     <Button
-        android:id="@+id/signature"
+        android:id="@+id/form_button"
         android:layout_width="match_parent"
-        android:layout_height="123dp"
-        android:layout_weight="1"
-        android:text="Button" />
+        android:layout_height="wrap_content"
+        android:text="Fill out a loan application" />
 </LinearLayout>
