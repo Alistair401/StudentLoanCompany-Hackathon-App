@@ -22,8 +22,20 @@ public class UniversityActivity extends AppCompatActivity {
 
     String [] nationalities = {"UK national", "Irish national", "EU national", "National of another country"};
 
-    String [] courses = {"Computing Science", "Mathematics", "Chemistry", "Physics", "Medicine", "Accounting and Finance",
-                        "f"};
+    String [] courses = {"Accounting and Finance","Adult and Continuing Education","American Studies",
+                        "Archaeology","Arts and Media","Informatics Astronomy","Biology and Biomedical Sciences",
+                        "Celtic Civilisation","Central and East European Studies",
+                        "Centre for Cultural Research Policy","Chemistry","Classics","Comparative Literature",
+                        "Computing Science","Creative Writing","Czech","Dentistry","Earth Sciences",
+                        "Economic and Social History","Economics","Education","Engineering",
+                        "English Language and Linguistics","English Literature","Film and Television Studies",
+                        "French","Gaelic","Geography","German","Greek","Hispanic Studies","History",
+                        "History of Art","Italian","Latin","Law","Management","Mathematics","Medicine",
+                        "Modern Languages","Music","Nankai University Collaboration","Nursing and Healthcare",
+                        "Philosophy","Physics","Polish","Politics","Psychology","Public Policy","Russian",
+                        "Scottish Literature","Slavonic Studies","Social and Political Sciences","Sociology",
+                        "Statistics","Theatre Studies","Theology and Religious Studies","Urban Studies",
+                        "Veterinary Bioscience","Veterinary Med and Surgery"};
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
