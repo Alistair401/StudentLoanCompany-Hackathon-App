@@ -7,10 +7,10 @@ var router = express.Router();
 
 let port = process.env.PORT || 80;
 let db = new sqlite3.Database(':memory:', sqlite3.OPEN_READWRITE, function () {
-    db.run("CREATE TABLE submissions (name TEXT,birthday TEXT,email TEXT,university TEXT,nationality TEXT,perm_address TEXT, signature BLOB, image BLOB, course TEXT, degree_year INTEGER, bank_number INTEGER, sort_code TEXT, borrow_amount INTEGER)");
+    db.run("CREATE TABLE submissions (name TEXT,birthday TEXT,email TEXT,university TEXT,nationality TEXT,perm_address TEXT, signature BLOB, image BLOB, course TEXT, degree_year TEXT, bank_number TEXT, sort_code TEXT, borrow_amount TEXT, contact_name TEXT, contact_mobile TEXT, term_address TEXT)");
 });
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit : '25mb'}));
 
 router.use(function (req, res, next) {
     next();
@@ -40,7 +40,7 @@ app.listen(port, function () {
 });
 
 function submit(form_obj, callback) {
-    db.run('INSERT into submissions VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)', [form_obj['name'], form_obj['birthday'], form_obj['email'], form_obj['university'], form_obj['nationality'], form_obj['perm_address'], form_obj['signature'], form_obj['image'],form_obj['course'],form_obj['degree_year'],form_obj['bank_number'],form_obj['sort_code'],form_obj['borrow_amount'] ], function (err) {
+    db.run('INSERT into submissions VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [form_obj['name'], form_obj['birthday'], form_obj['email'], form_obj['university'], form_obj['nationality'], form_obj['perm_address'], form_obj['signature'], form_obj['image'], form_obj['course'], form_obj['degree_year'], form_obj['bank_number'], form_obj['sort_code'], form_obj['borrow_amount'], form_obj['contact_name'], form_obj['contact_mobile'], form_obj['term_address']], function (err) {
         if (err) {
             console.log('DEBUG: error');
         } else {

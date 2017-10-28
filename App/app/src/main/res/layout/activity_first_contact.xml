@@ -20,6 +20,22 @@
             android:layout_height="wrap_content"
             android:hint="Mobile Number" />
 
+        <TextView
+            android:id="@+id/textViewRelation"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:text="Relation to you"
+            android:textAlignment="center"
+            android:textSize="30sp" />
+
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown" />
+
         <Button
             android:id="@+id/import_contact"
             android:layout_width="match_parent"

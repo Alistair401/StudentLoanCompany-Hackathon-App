@@ -24,13 +24,16 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.facebook.CallbackManager;
+
 import java.io.IOException;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-public class LocationActivity extends AppCompatActivity implements LocationListener{
+import guts.carpaltunnel.mobileapp.util.FormManager;
+
+public class LocationActivity extends AppCompatActivity implements LocationListener {
 
     Activity ctx = this;
 
@@ -147,6 +150,8 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
         submit_form.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), FirstContactActivity.class);
+                FormManager formManager = ((HSApplication) getApplicationContext()).formManager;
+                formManager.setField("perm_address", addr0.getText() + ", " + addr1.getText() + ", " + addr2.getText() + ", " + addr3.getText());
                 startActivityForResult(myIntent, 0);
             }
         });
@@ -160,8 +165,13 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
     }
 
     // Required functions
-    public void onProviderDisabled(String arg0) {}
-    public void onProviderEnabled(String arg0) {}
-    public void onStatusChanged(String arg0, int arg1, Bundle arg2) {}
+    public void onProviderDisabled(String arg0) {
+    }
+
+    public void onProviderEnabled(String arg0) {
+    }
+
+    public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
+    }
 }
 
