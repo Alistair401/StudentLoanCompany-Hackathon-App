@@ -1,0 +1,14 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+    <Button
+        android:id="@+id/universityNextButton"
+        android:layout_width="match_parent"
+        android:layout_height="123dp"
+        android:layout_weight="1"
+        android:text="next" />
+</LinearLayout>
