@@ -1,0 +1,22 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/textViewThanks"
+        android:layout_width="match_parent"
+        android:layout_height="232dp"
+        android:paddingTop="100dp"
+        android:text="Thanks for submitting your application"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
+
+    <Button
+        android:id="@+id/form_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Start Over" />
+</LinearLayout>

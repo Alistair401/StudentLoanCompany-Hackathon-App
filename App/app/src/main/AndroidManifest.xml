@@ -54,6 +54,7 @@
         <activity android:name=".UniversityActivity"></activity>
         <activity android:name=".BankActivity"></activity>
         <activity android:name=".PhotoIdActivity"></activity>
+        <activity android:name=".ThanksActivity"></activity>
 
 
     </application>

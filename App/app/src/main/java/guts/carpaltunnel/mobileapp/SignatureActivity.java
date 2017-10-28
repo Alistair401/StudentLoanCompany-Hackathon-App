@@ -95,10 +95,8 @@ public class SignatureActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    Intent intent = new Intent();
-                    intent.putExtras(b);
-                    setResult(RESULT_OK, intent);
-                    finish();
+                    Intent myIntent = new Intent(v.getContext(), ThanksActivity.class);
+                    startActivityForResult(myIntent, 0);
                 }
             }
         });
