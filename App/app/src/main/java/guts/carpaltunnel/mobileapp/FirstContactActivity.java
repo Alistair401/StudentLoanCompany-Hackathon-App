@@ -40,7 +40,7 @@ public class FirstContactActivity extends AppCompatActivity {
 
         submit_form.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), SignatureActivity.class);
+                Intent myIntent = new Intent(view.getContext(), UniversityActivity.class);
                 startActivityForResult(myIntent, 0);
             }
         });
