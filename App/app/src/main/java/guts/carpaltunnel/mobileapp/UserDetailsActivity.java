@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -47,6 +49,9 @@ public class UserDetailsActivity extends AppCompatActivity{
         email = findViewById(R.id.email);
         facebook_login_button = findViewById(R.id.facebook_login_button);
         submit_form = findViewById(R.id.submit_form);
+
+
+
 
         facebook_login_button.setReadPermissions(Arrays.asList("email", "user_birthday"));
         facebook_login_button.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
