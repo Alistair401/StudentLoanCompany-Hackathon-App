@@ -62,9 +62,7 @@ public class PhotoIdActivity extends AppCompatActivity  {
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
 
-            if(photo.getConfig() != null){
-                imageView.setImageBitmap(photo);
-            }
+            imageView.setImageBitmap(photo);
 
             TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
             Frame imageFrame = new Frame.Builder()
