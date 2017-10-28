@@ -82,6 +82,12 @@ public class SignatureActivity extends AppCompatActivity {
                 Log.v("log_tag", "Panel Saved");
                 boolean error = captureSignature();
                 if (!error) {
+
+                    mView.setDrawingCacheEnabled(true);
+                    mSignature.save(mView);
+                    Bundle b = new Bundle();
+                    b.putString("status", "done");
+
                     FormManager formManager = ((HSApplication) getApplicationContext()).formManager;
                     formManager.setField("signature", encodedSignature);
                     try {
@@ -89,10 +95,6 @@ public class SignatureActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    mView.setDrawingCacheEnabled(true);
-                    mSignature.save(mView);
-                    Bundle b = new Bundle();
-                    b.putString("status", "done");
                     Intent intent = new Intent();
                     intent.putExtras(b);
                     setResult(RESULT_OK, intent);
