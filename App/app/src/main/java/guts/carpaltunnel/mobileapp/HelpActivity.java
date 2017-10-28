@@ -28,7 +28,7 @@ public class HelpActivity extends AppCompatActivity {
         Button helpButton= (Button) findViewById(R.id.helpButton);
         helpButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                HSHelpStack.getInstance(getActivity()).showHelp(getActivity());
+         //       HSHelpStack.getInstance(getActivity()).showHelp(getActivity());
             }
         });
     }
