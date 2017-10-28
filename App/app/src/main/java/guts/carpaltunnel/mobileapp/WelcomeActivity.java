@@ -1,6 +1,8 @@
 package guts.carpaltunnel.mobileapp;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;

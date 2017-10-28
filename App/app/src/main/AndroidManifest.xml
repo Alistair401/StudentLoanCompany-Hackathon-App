@@ -42,8 +42,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="guts.carpaltunnel.mobileapp.WelcomeActivity" />
         </activity>
+
         <activity android:name=".LocationActivity"></activity>
         <activity android:name=".SignatureActivity"></activity>
+        <activity android:name=".FirstContactActivity"></activity>
+
     </application>
 
 </manifest>
