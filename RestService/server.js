@@ -7,7 +7,7 @@ var router = express.Router();
 
 let port = process.env.PORT || 80;
 let db = new sqlite3.Database(':memory:', sqlite3.OPEN_READWRITE, function () {
-    db.run("CREATE TABLE submissions (name TEXT,birthday TEXT,email TEXT,university TEXT,nationality TEXT,perm_address TEXT, signature BLOB, image BLOB, course TEXT, degree_year INTEGER, bank_number INTEGER, sort_code TEXT, borrow_amount INTEGER, contact_name TEXT, contact_mobile INTEGER)");
+    db.run("CREATE TABLE submissions (name TEXT,birthday TEXT,email TEXT,university TEXT,nationality TEXT,perm_address TEXT, signature BLOB, image BLOB, course TEXT, degree_year TEXT, bank_number TEXT, sort_code TEXT, borrow_amount TEXT, contact_name TEXT, contact_mobile TEXT)");
 });
 
 app.use(bodyParser.json());

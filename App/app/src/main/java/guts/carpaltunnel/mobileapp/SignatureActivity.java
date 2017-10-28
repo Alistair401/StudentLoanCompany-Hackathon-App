@@ -10,10 +10,10 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -23,8 +23,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 
@@ -41,8 +41,11 @@ public class SignatureActivity extends AppCompatActivity {
     View mView;
     File mypath;
 
+    String encodedSignature;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signature);
 
@@ -80,6 +83,7 @@ public class SignatureActivity extends AppCompatActivity {
                 boolean error = captureSignature();
                 if (!error) {
                     FormManager formManager = ((HSApplication) getApplicationContext()).formManager;
+                    formManager.setField("signature", encodedSignature);
                     try {
                         formManager.submit();
                     } catch (IOException e) {
@@ -188,22 +192,16 @@ public class SignatureActivity extends AppCompatActivity {
             Log.v("log_tag", "Height: " + v.getHeight());
             if (mBitmap == null) {
                 mBitmap = Bitmap.createBitmap(mContent.getWidth(), mContent.getHeight(), Bitmap.Config.RGB_565);
-                ;
             }
             Canvas canvas = new Canvas(mBitmap);
             try {
-                FileOutputStream mFileOutStream = new FileOutputStream(mypath);
 
                 v.draw(canvas);
-                mBitmap.compress(Bitmap.CompressFormat.PNG, 90, mFileOutStream);
-                mFileOutStream.flush();
-                mFileOutStream.close();
-                String url = MediaStore.Images.Media.insertImage(getContentResolver(), mBitmap, "title", null);
-                Log.v("log_tag", "url: " + url);
-                //In case you want to delete the file
-                //boolean deleted = mypath.delete();
-                //Log.v("log_tag","deleted: " + mypath.toString() + deleted);
-                //If you want to convert the image to string use base64 converter
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
+                mBitmap.compress(Bitmap.CompressFormat.PNG, 90, byteArrayOutputStream);
+                byte[] byteArray = byteArrayOutputStream.toByteArray();
+                encodedSignature = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
             } catch (Exception e) {
                 Log.v("log_tag", e.toString());

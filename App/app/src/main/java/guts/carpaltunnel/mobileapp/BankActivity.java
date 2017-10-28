@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import guts.carpaltunnel.mobileapp.util.FormManager;
+
 public class BankActivity extends AppCompatActivity {
 
     Button loanBtn;
@@ -38,6 +40,10 @@ public class BankActivity extends AppCompatActivity {
         loanBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), PhotoIdActivity.class);
+                FormManager formManager = ((HSApplication) getApplicationContext()).formManager;
+                formManager.setField("bank_number", accField.getText());
+                formManager.setField("borrow_amount", borrowField.getText());
+                formManager.setField("sort_code", sortField1.getText().toString() + sortField2.getText().toString() + sortField3.getText().toString());
                 startActivityForResult(myIntent, 0);
             }
         });
