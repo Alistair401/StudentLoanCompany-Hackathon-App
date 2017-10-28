@@ -35,7 +35,7 @@ public class BankActivity extends AppCompatActivity {
 
         loanBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), SignatureActivity.class);
+                Intent myIntent = new Intent(view.getContext(), PhotoIdActivity.class);
                 startActivityForResult(myIntent, 0);
             }
         });
