@@ -83,7 +83,7 @@ public class UniversityActivity extends AppCompatActivity {
 
         submit_uni.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), SignatureActivity.class);
+                Intent myIntent = new Intent(view.getContext(), BankActivity.class);
                 startActivityForResult(myIntent, 0);
             }
         });
