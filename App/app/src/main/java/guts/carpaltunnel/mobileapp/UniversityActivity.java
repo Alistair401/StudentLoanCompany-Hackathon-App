@@ -1,9 +1,12 @@
 package guts.carpaltunnel.mobileapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 
 /**
  * Created by tom21 on 28/10/17.
@@ -20,7 +23,7 @@ public class UniversityActivity extends AppCompatActivity {
                             "University of Strathclyde", "University of Sunderland", "University of the Arts London",
                             "University of Wales", "University of the West of Scotland", "University of Wolverhampton"};
 
-    String [] nationalities = {"UK national", "Irish national", "EU national", "National of another country"};
+    String [] nationalities = {"Scottish","English","Welsh","Northern Irish", "Irish national", "EU national", "National of another country"};
 
     String [] courses = {"Accounting and Finance","Adult and Continuing Education","American Studies",
                         "Archaeology","Arts and Media","Informatics Astronomy","Biology and Biomedical Sciences",
@@ -37,10 +40,14 @@ public class UniversityActivity extends AppCompatActivity {
                         "Statistics","Theatre Studies","Theology and Religious Studies","Urban Studies",
                         "Veterinary Bioscience","Veterinary Med and Surgery"};
     /** Called when the activity is first created. */
+
+    Button submit_uni;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_university);
+
+
 
         //// universities adapter
         //Create Array Adapter
@@ -61,6 +68,25 @@ public class UniversityActivity extends AppCompatActivity {
         acTextViewCourses.setThreshold(1);
         //Set the adapter
         acTextViewCourses.setAdapter(adapter_courses);
+
+        //// nationalities adapter
+        //Create Array Adapter
+        ArrayAdapter<String> adapter_nationalities = new ArrayAdapter<String>(this,android.R.layout.select_dialog_singlechoice, nationalities);
+        //Find TextView control
+        AutoCompleteTextView acTextViewNationalities = (AutoCompleteTextView) findViewById(R.id.nationalities);
+        //Set the number of characters the user must type before the drop down list is shown
+        acTextViewNationalities.setThreshold(1);
+        //Set the adapter
+        acTextViewNationalities.setAdapter(adapter_nationalities);
+
+        submit_uni = findViewById(R.id.submit_uni);
+
+        submit_uni.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), SignatureActivity.class);
+                startActivityForResult(myIntent, 0);
+            }
+        });
     }
 }
 
