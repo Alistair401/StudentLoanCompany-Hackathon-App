@@ -1,0 +1,19 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="148dp"
+        android:cropToPadding="true"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:src="@mipmap/slc_logo" />
+
+    <Button
+        android:id="@+id/form_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fill out a loan application" />
+</LinearLayout>
