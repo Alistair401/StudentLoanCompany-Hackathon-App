@@ -11,6 +11,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/login_button"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -30,18 +35,45 @@
                 android:inputType="text" />
         </LinearLayout>
 
-        <Button
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Pull from Facebook" />
+            android:orientation="horizontal">
 
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/login_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="30dp"
-            android:layout_marginTop="30dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Date of Birth"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/date_of_birth"
+
+                android:layout_width="223dp"
+                android:layout_height="match_parent"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Email"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/email"
+
+                android:layout_width="223dp"
+                android:layout_height="match_parent"
+                android:inputType="text" />
+        </LinearLayout>
+
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
