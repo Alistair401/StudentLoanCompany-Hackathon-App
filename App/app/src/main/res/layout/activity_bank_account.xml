@@ -10,8 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="185dp"
-        android:text="Fill out a loan application" />
+        android:layout_below="@+id/sortField3"
+        android:layout_marginTop="137dp"
+        android:text="Submit" />
 
     <TextView
         android:id="@+id/accText"
@@ -91,5 +92,62 @@
         android:layout_toEndOf="@+id/sortField1"
         android:text="-"
         android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/borrowText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sortField1"
+        android:layout_marginTop="18dp"
+        android:text="How much are you looking to borrow?" />
+
+    <RadioGroup
+        android:id="@+id/groupRadio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="165dp"
+        android:gravity="center"
+        android:minHeight="30dp"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/borrowField"
+            android:tooltipText="Your maximum allowance is based on your total \
+            household income. A non-income assessed allowance of £4,750 is \
+            available for all students, however you may be entitled to more."
+            android:text="Maximum" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:layout_below="@+id/borrowField"
+            android:layout_toEndOf="@+id/accText"
+            android:text="Exactly..." />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/borrowField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/borrowText"
+        android:layout_below="@+id/groupRadio"
+        android:ems="10"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/borrowField"
+        android:layout_alignParentStart="true"
+        android:text="£"
+        android:textSize="12pt" />
 
 </RelativeLayout>
