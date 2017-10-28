@@ -25,6 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".CaptureSignature">
+
+
+        </activity>
         <!--<activity android:name=".CaptureSignature" android:label="Signature Confirmation"
             android:theme="@android:style/Theme.Dialog" />-->
     </application>
