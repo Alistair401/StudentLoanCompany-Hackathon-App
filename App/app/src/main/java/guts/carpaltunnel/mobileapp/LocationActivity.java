@@ -19,15 +19,20 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.facebook.CallbackManager;
+
 import java.io.IOException;
 
 import java.util.List;
 import java.util.Locale;
 
-public class LocationActivity extends AppCompatActivity implements LocationListener{
+import guts.carpaltunnel.mobileapp.util.FormManager;
+
+public class LocationActivity extends AppCompatActivity implements LocationListener {
 
     CallbackManager callbackManager;
     LocationManager mLocationManager;
+
+    TextView addr0, addr1, addr2, addr3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,32 +47,32 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
         button.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NewApi")
             public void onClick(View v) {
-                if((Build.VERSION.SDK_INT < 23) || checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) ==
+                if ((Build.VERSION.SDK_INT < 23) || checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) ==
                         PackageManager.PERMISSION_GRANTED) {
                     mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                     mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, thisClass);
                     Location location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
-                    TextView[] address = {findViewById(R.id.permanent_address),
-                                          findViewById(R.id.address_city),
-                                          findViewById(R.id.address_country),
-                                          findViewById(R.id.address_postcode)};
+                    addr0 = findViewById(R.id.permanent_address);
+                    addr1 = findViewById(R.id.address_city);
+                    addr2 = findViewById(R.id.address_country);
+                    addr3 = findViewById(R.id.address_postcode);
 
-                    if(location == null) {
-                        address[0].setText("Location error :(");
-                        return; }
+                    if (location == null) {
+                        addr0.setText("Location error :(");
+                        return;
+                    }
 
                     Geocoder geocoder = new Geocoder(thisCtx, Locale.getDefault());
                     try {
                         List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),
                                 location.getLongitude(), 1);
-                        address[0].setText(addresses.get(0).getAddressLine(0).split(",")[0]);
-                        address[1].setText(addresses.get(0).getLocality());
-                        address[2].setText(addresses.get(0).getCountryName());
-                        address[3].setText(addresses.get(0).getPostalCode());
-                        System.out.println(addresses.get(0));
+                        addr0.setText(addresses.get(0).getAddressLine(0).split(",")[0]);
+                        addr1.setText(addresses.get(0).getLocality());
+                        addr2.setText(addresses.get(0).getCountryName());
+                        addr3.setText(addresses.get(0).getPostalCode());
                     } catch (IOException e) {
-                        address[0].setText("GPS Error :(");
+                        addr0.setText("GPS Error :(");
                     }
                 }
             }
@@ -77,6 +82,8 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
         submit_form.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), FirstContactActivity.class);
+                FormManager formManager = ((HSApplication) getApplicationContext()).formManager;
+                formManager.setField("perm_address", addr0.getText() + ", " + addr1.getText() + ", " + addr2.getText() + ", " + addr3.getText());
                 startActivityForResult(myIntent, 0);
             }
         });
@@ -90,8 +97,13 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
     }
 
     // Required functions
-    public void onProviderDisabled(String arg0) {}
-    public void onProviderEnabled(String arg0) {}
-    public void onStatusChanged(String arg0, int arg1, Bundle arg2) {}
+    public void onProviderDisabled(String arg0) {
+    }
+
+    public void onProviderEnabled(String arg0) {
+    }
+
+    public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
+    }
 }
 
