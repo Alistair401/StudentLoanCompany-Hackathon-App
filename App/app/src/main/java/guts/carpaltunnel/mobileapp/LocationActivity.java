@@ -76,7 +76,7 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
         Button submit_form = findViewById(R.id.submit_form);
         submit_form.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), SignatureActivity.class);
+                Intent myIntent = new Intent(view.getContext(), FirstContactActivity.class);
                 startActivityForResult(myIntent, 0);
             }
         });
