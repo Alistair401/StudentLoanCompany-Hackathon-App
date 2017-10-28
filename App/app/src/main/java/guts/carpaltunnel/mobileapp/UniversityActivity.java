@@ -19,19 +19,36 @@ public class UniversityActivity extends AppCompatActivity {
                             "The Robert Gordon University", "University of St Andrews", "University of Stirling",
                             "University of Strathclyde", "University of Sunderland", "University of the Arts London",
                             "University of Wales", "University of the West of Scotland", "University of Wolverhampton"};
+
+    String [] nationalities = {"UK national", "Irish national", "EU national", "National of another country"};
+
+    String [] courses = {"Computing Science", "Mathematics", "Chemistry", "Physics", "Medicine", "Accounting and Finance",
+                        "f"};
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_university);
+
+        //// universities adapter
         //Create Array Adapter
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.select_dialog_singlechoice, universities);
+        ArrayAdapter<String> adapter_universities = new ArrayAdapter<String>(this,android.R.layout.select_dialog_singlechoice, universities);
         //Find TextView control
-        AutoCompleteTextView acTextView = (AutoCompleteTextView) findViewById(R.id.universities);
+        AutoCompleteTextView acTextViewUniversities = (AutoCompleteTextView) findViewById(R.id.universities);
         //Set the number of characters the user must type before the drop down list is shown
-        acTextView.setThreshold(1);
+        acTextViewUniversities.setThreshold(1);
         //Set the adapter
-        acTextView.setAdapter(adapter);
+        acTextViewUniversities.setAdapter(adapter_universities);
+
+        //// courses adapter
+        //Create Array Adapter
+        ArrayAdapter<String> adapter_courses = new ArrayAdapter<String>(this,android.R.layout.select_dialog_singlechoice, courses);
+        //Find TextView control
+        AutoCompleteTextView acTextViewCourses = (AutoCompleteTextView) findViewById(R.id.courses);
+        //Set the number of characters the user must type before the drop down list is shown
+        acTextViewCourses.setThreshold(1);
+        //Set the adapter
+        acTextViewCourses.setAdapter(adapter_courses);
     }
 }
 
