@@ -19,7 +19,10 @@ import com.facebook.login.widget.LoginButton;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.Arrays;
+
+import guts.carpaltunnel.mobileapp.util.FormManager;
 
 public class UserDetailsActivity extends AppCompatActivity{
 
@@ -28,7 +31,6 @@ public class UserDetailsActivity extends AppCompatActivity{
     EditText full_name;
     EditText date_of_birth;
     EditText email;
-    EditText permanent_address;
     Button submit_form;
     LoginButton facebook_login_button;
 
@@ -43,7 +45,6 @@ public class UserDetailsActivity extends AppCompatActivity{
         full_name = findViewById(R.id.full_name);
         date_of_birth = findViewById(R.id.date_of_birth);
         email = findViewById(R.id.email);
-        permanent_address = findViewById(R.id.permanent_address);
         facebook_login_button = findViewById(R.id.facebook_login_button);
         submit_form = findViewById(R.id.submit_form);
 
@@ -72,6 +73,11 @@ public class UserDetailsActivity extends AppCompatActivity{
 
         submit_form.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                FormManager formManager = ((HSApplication)getApplicationContext()).formManager;
+                formManager.setField("name",full_name.getText());
+                formManager.setField("birthday",date_of_birth.getText());
+                formManager.setField("email",email.getText());
+
                 Intent myIntent = new Intent(view.getContext(), LocationActivity.class);
                 startActivityForResult(myIntent, 0);
             }

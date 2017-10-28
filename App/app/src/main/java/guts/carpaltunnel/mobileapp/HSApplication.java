@@ -4,8 +4,10 @@ import android.app.Application;
 import com.tenmiles.helpstack.HSHelpStack;
 import com.tenmiles.helpstack.gears.HSEmailGear;
 
-public class HSApplication extends Application {
+import guts.carpaltunnel.mobileapp.util.FormManager;
 
+public class HSApplication extends Application {
+    public FormManager formManager = new FormManager();
     public static HSHelpStack helpStack;
 
     @Override

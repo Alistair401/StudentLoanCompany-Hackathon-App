@@ -25,7 +25,10 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Calendar;
+
+import guts.carpaltunnel.mobileapp.util.FormManager;
 
 public class SignatureActivity extends AppCompatActivity {
 
@@ -76,6 +79,12 @@ public class SignatureActivity extends AppCompatActivity {
                 Log.v("log_tag", "Panel Saved");
                 boolean error = captureSignature();
                 if (!error) {
+                    FormManager formManager = ((HSApplication) getApplicationContext()).formManager;
+                    try {
+                        formManager.submit();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     mView.setDrawingCacheEnabled(true);
                     mSignature.save(mView);
                     Bundle b = new Bundle();
