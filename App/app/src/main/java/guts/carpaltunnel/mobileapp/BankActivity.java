@@ -97,7 +97,7 @@ public class BankActivity extends AppCompatActivity {
 
         groupRadio = findViewById(R.id.groupRadio);
         radioButton1 = findViewById(R.id.radioButton1);
-        radioButton2 = findViewById(R.id.radioButton1);
+        radioButton2 = findViewById(R.id.radioButton2);
         borrowField = findViewById(R.id.borrowField);
         borrowField.setVisibility(View.INVISIBLE);
 

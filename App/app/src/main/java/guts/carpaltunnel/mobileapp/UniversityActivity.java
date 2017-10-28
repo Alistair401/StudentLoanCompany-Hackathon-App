@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.Spinner;
 
 /**
  * Created by tom21 on 28/10/17.
@@ -39,6 +40,8 @@ public class UniversityActivity extends AppCompatActivity {
                         "Scottish Literature","Slavonic Studies","Social and Political Sciences","Sociology",
                         "Statistics","Theatre Studies","Theology and Religious Studies","Urban Studies",
                         "Veterinary Bioscience","Veterinary Med and Surgery"};
+
+
     /** Called when the activity is first created. */
 
     Button submit_uni;
@@ -78,6 +81,16 @@ public class UniversityActivity extends AppCompatActivity {
         acTextViewNationalities.setThreshold(1);
         //Set the adapter
         acTextViewNationalities.setAdapter(adapter_nationalities);
+
+        //get the spinner from the xml.
+        Spinner dropdown = (Spinner)findViewById(R.id.spinner1);
+        //create a list of items for the spinner.
+        String [] yearOfStudy = {"1st", "2nd", "3rd", "4th", "5th"};
+        //create an adapter to describe how the items are displayed, adapters are used in several places in android.
+        //There are multiple variations of this, but this is the basic variant.
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, yearOfStudy);
+        //set the spinners adapter to the previously created one.
+        dropdown.setAdapter(adapter);
 
         submit_uni = findViewById(R.id.submit_uni);
 
