@@ -1,5 +1,6 @@
 package guts.carpaltunnel.mobileapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
@@ -12,10 +13,13 @@ import android.graphics.RectF;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +35,9 @@ import java.util.Calendar;
 import guts.carpaltunnel.mobileapp.util.FormManager;
 
 public class SignatureActivity extends AppCompatActivity {
+
+    Activity ctx = this;
+    private Toolbar mTopToolbar;
 
     LinearLayout mContent;
     Signature mSignature;
@@ -100,6 +107,9 @@ public class SignatureActivity extends AppCompatActivity {
                 }
             }
         });
+
+        mTopToolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(mTopToolbar);
     }
 
     private boolean captureSignature() {
@@ -285,5 +295,30 @@ public class SignatureActivity extends AppCompatActivity {
             dirtyRect.top = Math.min(lastTouchY, eventY);
             dirtyRect.bottom = Math.max(lastTouchY, eventY);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            Intent myIntent = new Intent(ctx, ChatbotActivity.class);
+            startActivityForResult(myIntent, 0);
+//            Toast.makeText(WelcomeActivity.this, "Action clicked", Toast.LENGTH_LONG).show();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
