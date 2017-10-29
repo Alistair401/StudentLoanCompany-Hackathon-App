@@ -24,6 +24,14 @@
     android:weightSum="2">
 
     <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:cropToPadding="true"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:src="@mipmap/bar6"/>
+
+    <ImageView
         android:id="@+id/IdImage"
         android:layout_width="match_parent"
         android:layout_height="0dp"
