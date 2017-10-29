@@ -49,7 +49,7 @@ public class BankActivity extends AppCompatActivity {
                 Intent myIntent = new Intent(view.getContext(), PhotoIdActivity.class);
                 FormManager formManager = ((HSApplication) getApplicationContext()).formManager;
                 formManager.setField("bank_number", accField.getText());
-                formManager.setField("borrow_amount", borrowField.getText());
+                formManager.setField("borrow_amount", "£" + borrowField.getText());
                 formManager.setField("sort_code", sortField1.getText().toString() + sortField2.getText().toString() + sortField3.getText().toString());
                 startActivityForResult(myIntent, 0);
             }
