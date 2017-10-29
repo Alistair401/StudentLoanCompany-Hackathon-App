@@ -1,4 +1,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        style="@style/HeaderBar"
+        android:elevation="4dp"
+        />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
@@ -12,8 +23,8 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40sp"
-        android:text="Passport Photo"
+        android:layout_height="80sp"
+        android:text="Upload Identification"
         android:textSize="30sp" />
 
     <ImageView
@@ -53,4 +64,5 @@
         android:textAlignment="center"
         android:textSize="20sp" />
 
+</LinearLayout>
 </LinearLayout>

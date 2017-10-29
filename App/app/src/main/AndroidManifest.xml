@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
 
     <application
@@ -55,6 +56,7 @@
         <activity android:name=".BankActivity"></activity>
         <activity android:name=".PhotoIdActivity"></activity>
         <activity android:name=".ThanksActivity"></activity>
+        <activity android:name=".ChatbotActivity"></activity>
 
 
     </application>
