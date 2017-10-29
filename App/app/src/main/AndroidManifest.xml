@@ -48,14 +48,20 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="guts.carpaltunnel.mobileapp.WelcomeActivity" />
         </activity>
-        <activity android:name=".LocationActivity"></activity>
-        <activity android:name=".SignatureActivity"></activity>
-        <activity android:name=".HelpActivity"></activity>
-        <activity android:name=".FirstContactActivity"></activity>
-        <activity android:name=".UniversityActivity"></activity>
-        <activity android:name=".BankActivity"></activity>
-        <activity android:name=".PhotoIdActivity"></activity>
-        <activity android:name=".ThanksActivity"></activity>
+        <activity android:name=".LocationActivity"
+            android:label="@string/title_activity_loan_location"></activity>
+        <activity android:name=".SignatureActivity"
+            android:label="@string/title_activity_loan_signature"></activity>
+        <activity android:name=".FirstContactActivity"
+            android:label="@string/title_activity_loan_firstcontact"></activity>
+        <activity android:name=".UniversityActivity"
+            android:label="@string/title_activity_loan_university"></activity>
+        <activity android:name=".BankActivity"
+            android:label="@string/title_activity_loan_bank"></activity>
+        <activity android:name=".PhotoIdActivity"
+            android:label="@string/title_activity_loan_photoid"></activity>
+        <activity android:name=".ThanksActivity"
+            android:label="@string/title_activity_loan_thanks"></activity>
         <activity android:name=".ChatbotActivity"></activity>
 
 
