@@ -5,7 +5,7 @@
     tools:context=".WelcomeActivity">
 
     <item
-        android:id="@+id/action_favorite"
+        android:id="@+id/action_settings"
         android:orderInCategory="300"
         android:title="User"
         android:icon="@drawable/ic_filter_hdr_black_24dp"

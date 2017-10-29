@@ -1,5 +1,6 @@
 package guts.carpaltunnel.mobileapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.ContactsContract;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 public class WelcomeActivity extends AppCompatActivity {
 
+    Activity ctx = this;
     private Toolbar mTopToolbar;
 
     public static final int SIGNATURE_ACTIVITY = 1;
@@ -69,8 +71,10 @@ public class WelcomeActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_favorite) {
-            Toast.makeText(WelcomeActivity.this, "Action clicked", Toast.LENGTH_LONG).show();
+        if (id == R.id.action_settings) {
+            Intent myIntent = new Intent(ctx, ChatbotActivity.class);
+            startActivityForResult(myIntent, 0);
+//            Toast.makeText(WelcomeActivity.this, "Action clicked", Toast.LENGTH_LONG).show();
             return true;
         }
 
