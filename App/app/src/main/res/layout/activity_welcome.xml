@@ -24,6 +24,13 @@
         android:layout_height="148dp"
         android:cropToPadding="true"
         android:paddingTop="5dp"
+        android:paddingBottom="5dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="148dp"
+        android:cropToPadding="true"
+        android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:src="@mipmap/slc_logo" />
 
