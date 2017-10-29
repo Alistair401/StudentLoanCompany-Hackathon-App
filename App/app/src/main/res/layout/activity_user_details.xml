@@ -31,6 +31,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your details\n"
+                android:textSize="30sp" />
+
             <com.facebook.login.widget.LoginButton
                 android:id="@+id/facebook_login_button"
                 android:layout_width="match_parent"

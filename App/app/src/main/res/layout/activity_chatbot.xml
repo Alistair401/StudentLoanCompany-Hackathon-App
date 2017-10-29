@@ -22,6 +22,12 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="80sp"
+                    android:text="Ask Chatbot"
+                    android:textSize="30sp"/>
+
                 <AutoCompleteTextView
                     android:id="@+id/question"
                     android:layout_width="match_parent"
