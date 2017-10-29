@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="80sp"
-        android:text="Passport Photo"
+        android:text="Upload Identification"
         android:textSize="30sp" />
 
     <ImageView
