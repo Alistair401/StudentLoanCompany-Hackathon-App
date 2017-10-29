@@ -6,4 +6,12 @@
     <string name="facebook_app_id">1488210884603211</string>
     <string name="fb_login_protocol_scheme">fb1488210884603211</string>
     <string name="title_activity_loan_application">Loan Application Form</string>
+    <string name="title_activity_loan_userdetails">Enter your details</string>
+    <string name="title_activity_loan_location">Address Details</string>
+    <string name="title_activity_loan_firstcontact">Next of Kin</string>
+    <string name="title_activity_loan_university">University Details</string>
+    <string name="title_activity_loan_bank">Bank Account Details</string>
+    <string name="title_activity_loan_photoid">Upload Identification</string>
+    <string name="title_activity_loan_signature">Sign your application</string>
+    <string name="title_activity_loan_thanks">Thank You</string>
 </resources>

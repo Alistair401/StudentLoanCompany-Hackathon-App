@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -8,6 +9,7 @@
         android:layout_height="?attr/actionBarSize"
         style="@style/HeaderBar"
         android:elevation="4dp"
+        app:titleTextColor="@android:color/white"
         />
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -20,12 +22,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:weightSum="2">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="80sp"
-        android:text="Upload Identification"
-        android:textSize="30sp" />
 
     <ImageView
         android:id="@+id/IdImage"

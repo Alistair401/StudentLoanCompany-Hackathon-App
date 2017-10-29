@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -8,6 +9,7 @@
         android:layout_height="?attr/actionBarSize"
         style="@style/HeaderBar"
         android:elevation="4dp"
+        app:titleTextColor="@android:color/white"
         />
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -37,11 +39,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Address Details\n"
-                    android:textSize="30sp" />
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
