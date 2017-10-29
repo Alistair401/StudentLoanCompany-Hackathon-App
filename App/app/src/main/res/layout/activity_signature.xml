@@ -15,8 +15,16 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign Your Application\n"
+        android:text="Sign Your Application"
         android:textSize="30sp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:cropToPadding="true"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:src="@mipmap/bar7"/>
 
     <LinearLayout
         android:id="@+id/linearLayout"
