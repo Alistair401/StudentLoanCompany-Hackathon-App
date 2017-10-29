@@ -97,9 +97,9 @@ public class PhotoIdActivity extends AppCompatActivity  {
             String imageText = "";
             SparseArray<TextBlock> textBlocks = textRecognizer.detect(imageFrame);
             for (int i = 0; i < textBlocks.size(); i++) {
-                TextBlock textBlock = textBlocks.get(textBlocks.keyAt(i));
-                imageText = imageText + textBlock.getValue();                   // return string
-                System.out.println(textBlock.getValue());
+                    TextBlock textBlock = textBlocks.get(textBlocks.keyAt(i));
+                    imageText = imageText + textBlock.getValue();                   // return string
+                    System.out.println(textBlock.getValue());
             }
             TextView textView = this.findViewById(R.id.textView);
             textView.setText(imageText);
