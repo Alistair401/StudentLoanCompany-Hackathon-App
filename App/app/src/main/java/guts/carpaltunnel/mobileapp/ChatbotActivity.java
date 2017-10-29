@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -50,7 +51,7 @@ public class ChatbotActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatbot);
 
-        Button speakButton = findViewById(R.id.voice);
+        FloatingActionButton speakButton = findViewById(R.id.voice);
         Button submitButton = findViewById(R.id.submit_to_chatbot);
 
         question = findViewById(R.id.question);
