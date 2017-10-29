@@ -17,12 +17,15 @@ public class FormManager extends AsyncTask<URL, Integer, Long> {
     private JSONObject json = new JSONObject();
 
     public void submit() throws IOException {
+        System.out.println(json.toString());
         this.execute();
     }
 
     public void setField(String key, Object value) {
         try {
             json.put(key, value);
+            System.out.println("key: " + key + " value: " + value);
+            System.out.println(json.toString());
         } catch (JSONException ignored) {
         }
     }

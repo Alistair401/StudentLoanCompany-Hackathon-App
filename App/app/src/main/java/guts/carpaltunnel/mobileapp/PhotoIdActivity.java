@@ -65,7 +65,7 @@ public class PhotoIdActivity extends AppCompatActivity  {
                 startActivityForResult(myIntent, 0);
                 FormManager formManager = ((HSApplication) getApplicationContext()).formManager;
                 formManager.setField("image", encodedImage);
-                Log.d("BASE64", encodedImage);
+                //Log.d("BASE64", encodedImage);
             }
         });
     }
