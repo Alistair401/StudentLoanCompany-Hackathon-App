@@ -9,6 +9,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -25,6 +26,7 @@ public class BankActivity extends AppCompatActivity {
     EditText sortField2;
     EditText sortField3;
     EditText borrowField;
+    LinearLayout amount_entry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,11 @@ public class BankActivity extends AppCompatActivity {
         sortField1 = findViewById(R.id.sortField1);
         sortField2 = findViewById(R.id.sortField2);
         sortField3 = findViewById(R.id.sortField3);
+        groupRadio = findViewById(R.id.groupRadio);
+        radioButton1 = findViewById(R.id.radioButton1);
+        radioButton2 = findViewById(R.id.radioButton2);
+        borrowField = findViewById(R.id.borrowField);
+        amount_entry = findViewById(R.id.amount_entry);
 
         loanBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -50,94 +57,81 @@ public class BankActivity extends AppCompatActivity {
 
         int maxSortLength = 2;
 
-        accField.setFilters(new InputFilter[] {new InputFilter.LengthFilter(8)});
-        sortField1.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxSortLength)});
-        sortField2.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxSortLength)});
-        sortField3.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxSortLength)});
+        accField.setFilters(new InputFilter[]{new InputFilter.LengthFilter(8)});
+        sortField1.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxSortLength)});
+        sortField2.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxSortLength)});
+        sortField3.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxSortLength)});
 
         accField.addTextChangedListener(new TextWatcher() {
 
-            public void onTextChanged(CharSequence s, int start,int before, int count)
-            {
-                // TODO Auto-generated method stub
-                if(accField.getText().toString().length()==8)     //size as per your requirement
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (accField.getText().toString().length() == 8)     //size as per your requirement
                 {
                     sortField1.requestFocus();
                 }
             }
+
             public void beforeTextChanged(CharSequence s, int start,
                                           int count, int after) {
-                // TODO Auto-generated method stub
-
             }
 
             public void afterTextChanged(Editable s) {
-                // TODO Auto-generated method stub
             }
 
         });
 
         sortField1.addTextChangedListener(new TextWatcher() {
 
-            public void onTextChanged(CharSequence s, int start,int before, int count)
-            {
-                // TODO Auto-generated method stub
-                if(sortField1.getText().toString().length()==2)     //size as per your requirement
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (sortField1.getText().toString().length() == 2)     //size as per your requirement
                 {
                     sortField2.requestFocus();
                 }
             }
+
             public void beforeTextChanged(CharSequence s, int start,
                                           int count, int after) {
-                // TODO Auto-generated method stub
 
             }
 
             public void afterTextChanged(Editable s) {
-                // TODO Auto-generated method stub
             }
 
         });
 
         sortField2.addTextChangedListener(new TextWatcher() {
 
-            public void onTextChanged(CharSequence s, int start,int before, int count)
-            {
-                // TODO Auto-generated method stub
-                if(sortField2.getText().toString().length()==2)     //size as per your requirement
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (sortField2.getText().toString().length() == 2)     //size as per your requirement
                 {
                     sortField3.requestFocus();
                 }
             }
+
             public void beforeTextChanged(CharSequence s, int start,
                                           int count, int after) {
-                // TODO Auto-generated method stub
 
             }
 
             public void afterTextChanged(Editable s) {
-                // TODO Auto-generated method stub
             }
 
         });
 
-        /* groupRadio Handler */
-
-        groupRadio = findViewById(R.id.groupRadio);
-        radioButton1 = findViewById(R.id.radioButton1);
-        radioButton2 = findViewById(R.id.radioButton2);
-        borrowField = findViewById(R.id.borrowField);
-        borrowField.setVisibility(View.INVISIBLE);
+        amount_entry.setVisibility(View.GONE);
 
         groupRadio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-                if(checkedId==R.id.radioButton2)
-                    borrowField.setVisibility(View.VISIBLE);
-                else
-                    borrowField.setVisibility(View.INVISIBLE);
+                if (checkedId == R.id.radioButton2) {
+                    amount_entry.setVisibility(View.VISIBLE);
+                    borrowField.setText("");
+                } else {
+                    amount_entry.setVisibility(View.GONE);
+                    borrowField.setText("Maximum");
+                }
             }
         });
     }

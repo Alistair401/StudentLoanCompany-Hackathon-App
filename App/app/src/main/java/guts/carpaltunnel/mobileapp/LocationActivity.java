@@ -14,6 +14,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -84,7 +85,7 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
             }
         });
 
-        Button button = findViewById(R.id.location_button);
+        FloatingActionButton button = findViewById(R.id.location_button);
         button.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NewApi")
             public void onClick(View v) {

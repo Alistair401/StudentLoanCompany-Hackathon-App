@@ -11,6 +11,7 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,6 +38,7 @@ public class PhotoIdActivity extends AppCompatActivity  {
 
     private static final int CAMERA_REQUEST = 1888;
     private ImageView imageView;
+    ImageButton photoButton;
 
     String encodedImage;
 
@@ -45,9 +47,8 @@ public class PhotoIdActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_id);
         this.imageView = this.findViewById(R.id.IdImage);
-        imageView.setBackgroundColor(Color.rgb(128, 255, 128));
 
-        Button photoButton = this.findViewById(R.id.btnSelectPhoto);
+        photoButton = this.findViewById(R.id.btnSelectPhoto);
         photoButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -80,6 +81,9 @@ public class PhotoIdActivity extends AppCompatActivity  {
 
 
             imageView.setImageBitmap(photo);
+            imageView.setVisibility(View.VISIBLE);
+            photoButton.setVisibility(View.GONE);
+
 
             if(photo.getConfig() == null)
                 return;
